@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>David Collard - Node App Manager</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<header id="header">
+			<a href="index.html" class="title">DavidCollard.github.io</a>
+			<nav id="nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li class="dropdown">
+						<a href="#">Projects</a>
+						<ul>
+							<li><a href="GraphGame.html">GraphGame</a></li>
+							<li><a href="NAM.html">NAM</a></li>
+							<li><a href="https://github.com/DavidCollard/cppIncremental">cppIncremental</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div id="wrapper">
+			<section id="main" class="wrapper style1">
+				<div class="inner">
+					<h1 class="major">Node App Manager (NAM)
+						<a href="https://github.com/DavidCollard/NodeAppManager" class="icon brands fa-github" style="float:right"><span class="label">GitHub</span></a>
+					</h1>
+					<span class="image fit"><img src="images/NAM.png" alt="" /></span>
+					<p>
+						This is a node project written in TypeScript, which utlizes Express and a library called <a href="https://www.npmjs.com/package/decache">Decache</a>.
+					</p>
+					<p>
+						The motivation for this was simple: I was fed up with using typical node development tools like <a href="https://www.npmjs.com/package/nodemon">nodemon</a>, a program which automatically redeploys a node application when it detects a change to a source file. 
+						The issue I have with nodemon's approach is that if you need to run many modules or applications locally, it can take a long time to redeploy everything, and all state like database connections have to be rebuilt for even the smallest, unrelated change.
+					</p>
+					<p>
+						The solution I developed was to write a library that accomplishes what nodemon does, but at the granularity of an arbitrary unit of code.
+						When NAM starts up, it imports a set of modules from a given target directory. 
+						It then watches the target directory for changes to source code, and when such a change is detected, it drops the current version of said module that is being hosted, purges node's cache of the old module, then reimports and rehosts the modified module.
+						This solution accomplishes all of this without impacting any of the other modules which are currently being hosted. 
+						Modules that are imported are automatically wrapper in an express router if the default export of the target module isn't an express router, so arbitrary middleware can be run and tested independently and seemlessly.
+					</p>
+				</div>
+			</section>
+		</div>
+		<footer id="footer" class="wrapper style1-alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; David Collard. All rights reserved.</li>
+				</ul>
+			</div>
+		</footer>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
